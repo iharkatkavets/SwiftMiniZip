@@ -17,6 +17,8 @@
 		5436621C2949189600605381 /* UnzipTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5436621B2949189600605381 /* UnzipTests.swift */; };
 		5468F1AB295206DD00100E9F /* complexprotected.zip in Resources */ = {isa = PBXBuildFile; fileRef = 5468F1AA295206DD00100E9F /* complexprotected.zip */; };
 		5468F1AD2952070700100E9F /* complex.zip in Resources */ = {isa = PBXBuildFile; fileRef = 5468F1AC2952070700100E9F /* complex.zip */; };
+		54CD7565295DA1B400A2942E /* ArrayExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54CD7564295DA1B400A2942E /* ArrayExtensionsTests.swift */; };
+		54CD7569295DAC2000A2942E /* PathExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54CD7568295DAC2000A2942E /* PathExtensionsTests.swift */; };
 		607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD51AFB9204008FA782 /* AppDelegate.swift */; };
 		607FACD81AFB9204008FA782 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD71AFB9204008FA782 /* ViewController.swift */; };
 		607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 607FACD91AFB9204008FA782 /* Main.storyboard */; };
@@ -48,6 +50,8 @@
 		5436621B2949189600605381 /* UnzipTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnzipTests.swift; sourceTree = "<group>"; };
 		5468F1AA295206DD00100E9F /* complexprotected.zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = complexprotected.zip; sourceTree = "<group>"; };
 		5468F1AC2952070700100E9F /* complex.zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = complex.zip; sourceTree = "<group>"; };
+		54CD7564295DA1B400A2942E /* ArrayExtensionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrayExtensionsTests.swift; sourceTree = "<group>"; };
+		54CD7568295DAC2000A2942E /* PathExtensionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PathExtensionsTests.swift; sourceTree = "<group>"; };
 		583C11C6EE5AB7C2DCA3B369 /* Pods-SwiftMiniZip_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftMiniZip_Tests.debug.xcconfig"; path = "Target Support Files/Pods-SwiftMiniZip_Tests/Pods-SwiftMiniZip_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		607FACD01AFB9204008FA782 /* SwiftMiniZip_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftMiniZip_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACD41AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -144,6 +148,8 @@
 				5436621B2949189600605381 /* UnzipTests.swift */,
 				54243B65294F3B570008F6E5 /* ZipUnzipTests.swift */,
 				5436620E29446FD300605381 /* XCTestUtilities.swift */,
+				54CD7564295DA1B400A2942E /* ArrayExtensionsTests.swift */,
+				54CD7568295DAC2000A2942E /* PathExtensionsTests.swift */,
 				607FACE91AFB9204008FA782 /* Supporting Files */,
 				543662192949136800605381 /* protected.zip */,
 				5436621229464A3100605381 /* regular.zip */,
@@ -368,7 +374,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				54CD7569295DAC2000A2942E /* PathExtensionsTests.swift in Sources */,
 				5436620F29446FD300605381 /* XCTestUtilities.swift in Sources */,
+				54CD7565295DA1B400A2942E /* ArrayExtensionsTests.swift in Sources */,
 				5436621C2949189600605381 /* UnzipTests.swift in Sources */,
 				54243B66294F3B570008F6E5 /* ZipUnzipTests.swift in Sources */,
 				5436620D29446E6500605381 /* ZipTests.swift in Sources */,

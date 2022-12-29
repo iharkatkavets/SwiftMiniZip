@@ -8,6 +8,8 @@
 import Foundation
 import os.log
 
+public typealias Path = String
+
 public class Unzip {
     public struct Config {
         public var srcURL: URL?
@@ -33,7 +35,7 @@ public class Unzip {
         closeUnzipFile(file)
     }
     
-    public func readStructure() throws -> [String] {
+    public func readStructure() throws -> [Path] {
         try validateConfiguration()
         try validateSrcLocation()
         
@@ -89,7 +91,7 @@ public class Unzip {
         }
     }
     
-    private func readStructure(_ file: unzFile) throws -> [String] {
+    private func readStructure(_ file: unzFile) throws -> [Path] {
         do {
             var status: Int32 = unzGoToFirstFile(file)
             var list = [String]()
