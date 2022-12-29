@@ -1,0 +1,16 @@
+PODS:
+  - SwiftMiniZip (0.1.0)
+
+DEPENDENCIES:
+  - SwiftMiniZip (from `../`)
+
+EXTERNAL SOURCES:
+  SwiftMiniZip:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  SwiftMiniZip: 696150043558eeb6de9fca99518b7bc7f76e06c0
+
+PODFILE CHECKSUM: 1350307e0715e523b56c217120a53d4276335de5
+
+COCOAPODS: 1.11.3
