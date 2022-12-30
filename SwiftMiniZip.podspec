@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'SwiftMiniZip'
-  s.version          = '0.0.1'
+  s.version          = '0.0.2'
   s.summary          = 'A swift interface for c minizip library'
   s.description      = <<-DESC
 A Swift interface for c minizip library. Allow to compress/extract encrypted zip archives.
