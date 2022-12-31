@@ -67,7 +67,6 @@ final class UnzipTests: XCTestCase {
     func testReadStructure() throws {
         var config = Unzip.Config()
         config.srcURL = fileURL("complex", "zip")
-        config.dstURL = sandboxDirURL
         let unzip = Unzip(config: config)
         
         let list = try unzip.readStructure()
@@ -84,9 +83,6 @@ final class UnzipTests: XCTestCase {
         XCTAssertEqual("folder2/folder2_2/file2_2.txt", list[9])
         XCTAssertEqual("folder3/", list[10])
         XCTAssertEqual("folder3/file3.txt", list[11])
-        
-        try unzip.extract(["folder1/folder1_1/folder1_1_1/file1_1_1.txt"])
-        XCTAssertTrue(isItemExists(sandboxDirURL.appendingPathComponent("folder1/folder1_1/folder1_1_1/file1_1_1.txt")))
     }
     
     func testExtractOneFile() throws {
@@ -96,7 +92,6 @@ final class UnzipTests: XCTestCase {
         let unzip = Unzip(config: config)
         
         let list = try unzip.readStructure()
-        
         XCTAssertEqual("OriginFile.txt", list[0])
         try unzip.extract(["OriginFile.txt"])
         XCTAssertTrue(isItemExists(sandboxDirURL.appendingPathComponent("OriginFile.txt")))
@@ -105,7 +100,6 @@ final class UnzipTests: XCTestCase {
     func testExtractInMemory() throws {
         var config = Unzip.Config()
         config.srcURL = fileURL("complexprotected", "zip")
-        config.dstURL = sandboxDirURL
         config.password = "complexprotected.zip"
         let unzip = Unzip(config: config)
         

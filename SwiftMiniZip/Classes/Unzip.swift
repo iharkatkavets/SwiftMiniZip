@@ -27,8 +27,8 @@ public class Unzip {
     }
     
     public func extract() throws {
-        try validateDstConfiguration()
         try validateSrcConfiguration()
+        try validateDstConfiguration()
         
         let file = try createUnzipFile()
         try extractAll(file)
@@ -36,7 +36,6 @@ public class Unzip {
     }
     
     public func readStructure() throws -> [Path] {
-        try validateDstConfiguration()
         try validateSrcConfiguration()
         
         let file = try createUnzipFile()
