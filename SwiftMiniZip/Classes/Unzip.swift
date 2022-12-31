@@ -27,8 +27,8 @@ public class Unzip {
     }
     
     public func extract() throws {
-        try validateConfiguration()
-        try validateSrcLocation()
+        try validateDstConfiguration()
+        try validateSrcConfiguration()
         
         let file = try createUnzipFile()
         try extractAll(file)
@@ -36,8 +36,8 @@ public class Unzip {
     }
     
     public func readStructure() throws -> [Path] {
-        try validateConfiguration()
-        try validateSrcLocation()
+        try validateDstConfiguration()
+        try validateSrcConfiguration()
         
         let file = try createUnzipFile()
         let list = try readStructure(file)
@@ -45,12 +45,13 @@ public class Unzip {
         return list
     }
     
-    func validateConfiguration() throws {
-        guard config.srcURL != nil else { throw ConfigurationError() }
+    private func validateDstConfiguration() throws {
         guard config.dstURL != nil else { throw ConfigurationError() }
     }
     
-    private func validateSrcLocation() throws {
+    private func validateSrcConfiguration() throws {
+        guard config.srcURL != nil else { throw ConfigurationError() }
+        
         if fm.fileExists(atPath: config.srcURL!.absoluteString) {
             throw FileNotExists(url: config.srcURL!)
         }
@@ -240,11 +241,10 @@ public class Unzip {
     }
     
     public func extract(_ list: [String]) throws {
-        try validateConfiguration()
-        try validateSrcLocation()
+        try validateDstConfiguration()
+        try validateSrcConfiguration()
         
         let file = try createUnzipFile()
-        try extractAll(file)
         for i in 0..<list.count {
             do {
                 let path = list[i].cString(using: .ascii)
@@ -269,5 +269,49 @@ public class Unzip {
             }
         }
         closeUnzipFile(file)
+    }
+    
+    public func extractToMemory(_ path: String) throws -> Data {
+        try validateSrcConfiguration()
+        
+        let bufferSize: UInt32 = 4096
+        var outData = Data(capacity: Int(bufferSize))
+        let file = try createUnzipFile()
+        do {
+            let path = path.cString(using: .ascii)
+            guard unzLocateFile(file, path, 1) == UNZ_OK else {
+                throw MiniUnzipError()
+            }
+            try openCurrentFile(file)
+            let filePath = try extractPath(file)
+            let isDirectory = isStringEndsToSlash(filePath)
+            
+            if !isDirectory {
+                var writeBytes: UInt64 = 0
+                var readBytes: Int32 = 0
+                var buffer = Array<CUnsignedChar>(repeating: 0, count: Int(bufferSize))
+                
+                repeat {
+                    readBytes = unzReadCurrentFile(file, &buffer, bufferSize)
+                    if readBytes > 0 {
+                        outData.append(buffer, count: Int(readBytes))
+                        writeBytes += UInt64(readBytes)
+                    }
+                }
+                while ((readBytes > 0))
+                        
+                let crc_ret = unzCloseCurrentFile(file)
+                if crc_ret == UNZ_CRCERROR {
+                    throw PasswordError()
+                }
+            }
+            closeCurrentFile(file)
+        }
+        catch {
+            closeCurrentFile(file)
+            throw error
+        }
+        closeUnzipFile(file)
+        return outData
     }
 }

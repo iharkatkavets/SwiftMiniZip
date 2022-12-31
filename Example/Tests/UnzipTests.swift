@@ -101,4 +101,19 @@ final class UnzipTests: XCTestCase {
         try unzip.extract(["OriginFile.txt"])
         XCTAssertTrue(isItemExists(sandboxDirURL.appendingPathComponent("OriginFile.txt")))
     }
+    
+    func testExtractInMemory() throws {
+        var config = Unzip.Config()
+        config.srcURL = fileURL("complexprotected", "zip")
+        config.dstURL = sandboxDirURL
+        config.password = "complexprotected.zip"
+        let unzip = Unzip(config: config)
+        
+        let fileData = try unzip
+            .extractToMemory("folder1/folder1_1/folder1_1_1/file1_1_1.txt")
+        
+        let fileContent = "folder1/folder1_1/folder1_1_1/file1_1_1.txt\n"
+        let expectedData = fileContent.data(using: .utf8)
+        XCTAssertEqual(expectedData, fileData)
+    }
 }
