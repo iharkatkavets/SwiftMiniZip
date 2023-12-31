@@ -1,28 +1,43 @@
 # SwiftMiniZip
 
-[![CI Status](https://img.shields.io/travis/Ihar Katkavets/SwiftMiniZip.svg?style=flat)](https://travis-ci.org/Ihar Katkavets/SwiftMiniZip)
-[![Version](https://img.shields.io/cocoapods/v/SwiftMiniZip.svg?style=flat)](https://cocoapods.org/pods/SwiftMiniZip)
-[![License](https://img.shields.io/cocoapods/l/SwiftMiniZip.svg?style=flat)](https://cocoapods.org/pods/SwiftMiniZip)
-[![Platform](https://img.shields.io/cocoapods/p/SwiftMiniZip.svg?style=flat)](https://cocoapods.org/pods/SwiftMiniZip)
+The idea of that library to provide Swift wrappers around popular C [minizip](https://github.com/madler/zlib/tree/master/contrib/minizip) library
 
 ## Example
 
-To run the example project, clone the repo, and run `pod install` from the Example directory first.
+Zip operation
+```swift
+var config = Zip.Config()
+config.srcs = [
+  folder1URL, file2URL, folder3URL, file4URL
+]
+config.dstURL = zipFileURL
+config.password = passwordStringIfNeeded
+let zip = Zip(config: config)
+try zip.perform()
+```
+
+Unzip operation
+```swift
+var config = Unzip.Config()
+config.srcURL = zipFileURL
+config.dstURL = destinationDirURL
+config.password = passwordStringIfNeeded
+let unzip = Unzip(config: config)        
+try unzip.extract()
+```
 
 ## Requirements
 
+iOS 15.0, 
+macOS 10.14
+
 ## Installation
 
-SwiftMiniZip is available through [CocoaPods](https://cocoapods.org). To install
-it, simply add the following line to your Podfile:
-
-```ruby
-pod 'SwiftMiniZip'
-```
+In the Xcode press `File` -> `Add Packages` -> In the search field insert `https://github.com/iharkatkavets/SwiftMiniZip`. It might require to setup GitHub Account in the Xcode
 
 ## Author
 
-Ihar Katkavets, iharkatkavets@users.noreply.github.com
+Ihar Katkavets, job4ihar@gmail.com
 
 ## License
 
