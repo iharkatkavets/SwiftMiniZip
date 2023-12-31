@@ -7,6 +7,7 @@
 
 import Foundation
 import os.log
+import cminizip
 
 public enum CompressionLevel: Int32 {
     case NoCompression

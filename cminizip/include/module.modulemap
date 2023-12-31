@@ -1,0 +1,5 @@
+module cminizip {
+    header "../Headers/Core-Bridging-Header.h"
+    link "cminizip"
+    export *
+}

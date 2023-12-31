@@ -10,7 +10,8 @@ import XCTest
 
 extension XCTestCase {
     func fileURL(_ filename: String, _ extensions: String?) -> URL {
-        return Bundle(for: Self.self).url(forResource: filename, withExtension: extensions)!
+        let url = Bundle.module.url(forResource: filename, withExtension: extensions)!
+        return url
     }
     
     func createFolder(_ url: URL) throws {

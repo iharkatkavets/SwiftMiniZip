@@ -4,23 +4,33 @@
 import PackageDescription
 
 let package = Package(
-    name: "PlotView",
-    platforms: [.iOS(.v15)],
+    name: "SwiftMiniZip",
+    platforms: [.iOS(.v15),.macOS(.v10_14)],
     products: [
         .library(
-            name: "PlotView",
-            targets: ["PlotView"]),
-    ],
-    dependencies: [
-        .package(url: "git@github.com:iharkatkavets/grid-view.ios.swift.git", from: "0.1.5")
+            name: "SwiftMiniZip",
+            targets: ["SwiftMiniZip"]),
     ],
     targets: [
         .target(
-            name: "PlotView",
-            dependencies: [
-                .product(name: "GridView", package: "grid-view.ios.swift")]),
+            name: "SwiftMiniZip",
+            dependencies: ["cminizip"],
+            path: "Sources"),
+        .target(
+            name: "cminizip",
+            path: "cminizip"),
         .testTarget(
-            name: "PlotViewTests",
-            dependencies: ["PlotView"]),
+            name: "SwiftMiniZipTests",
+            dependencies: ["SwiftMiniZip"],
+            path: "Tests",
+            resources: [
+                .copy("Resources/complex.zip"),
+                .copy("Resources/complexprotected.zip"),
+                .copy("Resources/OriginFile.txt"),
+                .copy("Resources/FirstFolder"),
+                .copy("Resources/protected.zip"),
+                .copy("Resources/regular.zip"),
+            ]),
     ]
+    
 )
