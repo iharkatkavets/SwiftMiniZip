@@ -7,22 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		14F4E3526F76157DFE897E5E /* Pods_SwiftMiniZip_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D708CD9AF02D0AC955424E7 /* Pods_SwiftMiniZip_Tests.framework */; };
-		54243B64294F2A460008F6E5 /* OriginFile.txt in Resources */ = {isa = PBXBuildFile; fileRef = 54243B63294F2A460008F6E5 /* OriginFile.txt */; };
-		54243B66294F3B570008F6E5 /* ZipUnzipTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54243B65294F3B570008F6E5 /* ZipUnzipTests.swift */; };
-		5436620D29446E6500605381 /* ZipTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5436620C29446E6500605381 /* ZipTests.swift */; };
-		5436620F29446FD300605381 /* XCTestUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5436620E29446FD300605381 /* XCTestUtilities.swift */; };
-		5436621329464A3100605381 /* regular.zip in Resources */ = {isa = PBXBuildFile; fileRef = 5436621229464A3100605381 /* regular.zip */; };
-		5436621A2949136800605381 /* protected.zip in Resources */ = {isa = PBXBuildFile; fileRef = 543662192949136800605381 /* protected.zip */; };
-		5436621C2949189600605381 /* UnzipTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5436621B2949189600605381 /* UnzipTests.swift */; };
-		5468F1AB295206DD00100E9F /* complexprotected.zip in Resources */ = {isa = PBXBuildFile; fileRef = 5468F1AA295206DD00100E9F /* complexprotected.zip */; };
-		5468F1AD2952070700100E9F /* complex.zip in Resources */ = {isa = PBXBuildFile; fileRef = 5468F1AC2952070700100E9F /* complex.zip */; };
 		607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD51AFB9204008FA782 /* AppDelegate.swift */; };
 		607FACD81AFB9204008FA782 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD71AFB9204008FA782 /* ViewController.swift */; };
 		607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 607FACD91AFB9204008FA782 /* Main.storyboard */; };
 		607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDC1AFB9204008FA782 /* Images.xcassets */; };
 		607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDE1AFB9204008FA782 /* LaunchScreen.xib */; };
-		8C419F42CAE975B3FCDDA3B6 /* Pods_SwiftMiniZip_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E2943BBB71C34572D7940AD /* Pods_SwiftMiniZip_Example.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,18 +26,6 @@
 
 /* Begin PBXFileReference section */
 		2CF47E3B4531881CF5237406 /* SwiftMiniZip.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = SwiftMiniZip.podspec; path = ../SwiftMiniZip.podspec; sourceTree = "<group>"; };
-		3CD79281E63DE452B6E3669E /* Pods-SwiftMiniZip_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftMiniZip_Tests.release.xcconfig"; path = "Target Support Files/Pods-SwiftMiniZip_Tests/Pods-SwiftMiniZip_Tests.release.xcconfig"; sourceTree = "<group>"; };
-		4E2943BBB71C34572D7940AD /* Pods_SwiftMiniZip_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SwiftMiniZip_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		54243B63294F2A460008F6E5 /* OriginFile.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = OriginFile.txt; sourceTree = "<group>"; };
-		54243B65294F3B570008F6E5 /* ZipUnzipTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZipUnzipTests.swift; sourceTree = "<group>"; };
-		5436620C29446E6500605381 /* ZipTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZipTests.swift; sourceTree = "<group>"; };
-		5436620E29446FD300605381 /* XCTestUtilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XCTestUtilities.swift; sourceTree = "<group>"; };
-		5436621229464A3100605381 /* regular.zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = regular.zip; sourceTree = "<group>"; };
-		543662192949136800605381 /* protected.zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = protected.zip; sourceTree = "<group>"; };
-		5436621B2949189600605381 /* UnzipTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnzipTests.swift; sourceTree = "<group>"; };
-		5468F1AA295206DD00100E9F /* complexprotected.zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = complexprotected.zip; sourceTree = "<group>"; };
-		5468F1AC2952070700100E9F /* complex.zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = complex.zip; sourceTree = "<group>"; };
-		583C11C6EE5AB7C2DCA3B369 /* Pods-SwiftMiniZip_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftMiniZip_Tests.debug.xcconfig"; path = "Target Support Files/Pods-SwiftMiniZip_Tests/Pods-SwiftMiniZip_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		607FACD01AFB9204008FA782 /* SwiftMiniZip_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftMiniZip_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACD41AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		607FACD51AFB9204008FA782 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -58,10 +35,7 @@
 		607FACDF1AFB9204008FA782 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		607FACE51AFB9204008FA782 /* SwiftMiniZip_Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwiftMiniZip_Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACEA1AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		6D708CD9AF02D0AC955424E7 /* Pods_SwiftMiniZip_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SwiftMiniZip_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		76C5E48D6B480B40973CFFBE /* Pods-SwiftMiniZip_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftMiniZip_Example.debug.xcconfig"; path = "Target Support Files/Pods-SwiftMiniZip_Example/Pods-SwiftMiniZip_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		7FCF82E4F03DF9D3D80F96B8 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
-		9EE8FF7D4B31DB165A32BC55 /* Pods-SwiftMiniZip_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftMiniZip_Example.release.xcconfig"; path = "Target Support Files/Pods-SwiftMiniZip_Example/Pods-SwiftMiniZip_Example.release.xcconfig"; sourceTree = "<group>"; };
 		AE7AB2412342799F3E8C0AA6 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -70,7 +44,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8C419F42CAE975B3FCDDA3B6 /* Pods_SwiftMiniZip_Example.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -78,22 +51,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				14F4E3526F76157DFE897E5E /* Pods_SwiftMiniZip_Tests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		4C739042D5892F35D79B63B0 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				4E2943BBB71C34572D7940AD /* Pods_SwiftMiniZip_Example.framework */,
-				6D708CD9AF02D0AC955424E7 /* Pods_SwiftMiniZip_Tests.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 		607FACC71AFB9204008FA782 = {
 			isa = PBXGroup;
 			children = (
@@ -101,8 +64,6 @@
 				607FACD21AFB9204008FA782 /* Example for SwiftMiniZip */,
 				607FACE81AFB9204008FA782 /* Tests */,
 				607FACD11AFB9204008FA782 /* Products */,
-				C9CF526FFA1C7B8C1374F347 /* Pods */,
-				4C739042D5892F35D79B63B0 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -140,16 +101,7 @@
 		607FACE81AFB9204008FA782 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
-				5436620C29446E6500605381 /* ZipTests.swift */,
-				5436621B2949189600605381 /* UnzipTests.swift */,
-				54243B65294F3B570008F6E5 /* ZipUnzipTests.swift */,
-				5436620E29446FD300605381 /* XCTestUtilities.swift */,
 				607FACE91AFB9204008FA782 /* Supporting Files */,
-				543662192949136800605381 /* protected.zip */,
-				5436621229464A3100605381 /* regular.zip */,
-				5468F1AC2952070700100E9F /* complex.zip */,
-				5468F1AA295206DD00100E9F /* complexprotected.zip */,
-				54243B63294F2A460008F6E5 /* OriginFile.txt */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -172,17 +124,6 @@
 			name = "Podspec Metadata";
 			sourceTree = "<group>";
 		};
-		C9CF526FFA1C7B8C1374F347 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				76C5E48D6B480B40973CFFBE /* Pods-SwiftMiniZip_Example.debug.xcconfig */,
-				9EE8FF7D4B31DB165A32BC55 /* Pods-SwiftMiniZip_Example.release.xcconfig */,
-				583C11C6EE5AB7C2DCA3B369 /* Pods-SwiftMiniZip_Tests.debug.xcconfig */,
-				3CD79281E63DE452B6E3669E /* Pods-SwiftMiniZip_Tests.release.xcconfig */,
-			);
-			path = Pods;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -190,11 +131,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 607FACEF1AFB9204008FA782 /* Build configuration list for PBXNativeTarget "SwiftMiniZip_Example" */;
 			buildPhases = (
-				79AD3B0277C9147760C18EEA /* [CP] Check Pods Manifest.lock */,
 				607FACCC1AFB9204008FA782 /* Sources */,
 				607FACCD1AFB9204008FA782 /* Frameworks */,
 				607FACCE1AFB9204008FA782 /* Resources */,
-				1B0AE2B1D54215BA711C1D86 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -209,7 +148,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 607FACF21AFB9204008FA782 /* Build configuration list for PBXNativeTarget "SwiftMiniZip_Tests" */;
 			buildPhases = (
-				FF8665BB8CD10A72F56EEEAD /* [CP] Check Pods Manifest.lock */,
 				607FACE11AFB9204008FA782 /* Sources */,
 				607FACE21AFB9204008FA782 /* Frameworks */,
 				607FACE31AFB9204008FA782 /* Resources */,
@@ -236,10 +174,12 @@
 				TargetAttributes = {
 					607FACCF1AFB9204008FA782 = {
 						CreatedOnToolsVersion = 6.3.1;
+						DevelopmentTeam = L454S9SQH7;
 						LastSwiftMigration = "";
 					};
 					607FACE41AFB9204008FA782 = {
 						CreatedOnToolsVersion = 6.3.1;
+						DevelopmentTeam = L454S9SQH7;
 						LastSwiftMigration = "";
 						TestTargetID = 607FACCF1AFB9204008FA782;
 					};
@@ -279,80 +219,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5468F1AB295206DD00100E9F /* complexprotected.zip in Resources */,
-				54243B64294F2A460008F6E5 /* OriginFile.txt in Resources */,
-				5436621329464A3100605381 /* regular.zip in Resources */,
-				5468F1AD2952070700100E9F /* complex.zip in Resources */,
-				5436621A2949136800605381 /* protected.zip in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		1B0AE2B1D54215BA711C1D86 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-SwiftMiniZip_Example/Pods-SwiftMiniZip_Example-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/SwiftMiniZip/SwiftMiniZip.framework",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftMiniZip.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SwiftMiniZip_Example/Pods-SwiftMiniZip_Example-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		79AD3B0277C9147760C18EEA /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-SwiftMiniZip_Example-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		FF8665BB8CD10A72F56EEEAD /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-SwiftMiniZip_Tests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		607FACCC1AFB9204008FA782 /* Sources */ = {
@@ -368,10 +238,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5436620F29446FD300605381 /* XCTestUtilities.swift in Sources */,
-				5436621C2949189600605381 /* UnzipTests.swift in Sources */,
-				54243B66294F3B570008F6E5 /* ZipUnzipTests.swift in Sources */,
-				5436620D29446E6500605381 /* ZipTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -514,9 +380,9 @@
 		};
 		607FACF01AFB9204008FA782 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 76C5E48D6B480B40973CFFBE /* Pods-SwiftMiniZip_Example.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = L454S9SQH7;
 				INFOPLIST_FILE = SwiftMiniZip/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -530,9 +396,9 @@
 		};
 		607FACF11AFB9204008FA782 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9EE8FF7D4B31DB165A32BC55 /* Pods-SwiftMiniZip_Example.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = L454S9SQH7;
 				INFOPLIST_FILE = SwiftMiniZip/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -546,8 +412,8 @@
 		};
 		607FACF31AFB9204008FA782 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 583C11C6EE5AB7C2DCA3B369 /* Pods-SwiftMiniZip_Tests.debug.xcconfig */;
 			buildSettings = {
+				DEVELOPMENT_TEAM = L454S9SQH7;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -568,8 +434,8 @@
 		};
 		607FACF41AFB9204008FA782 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3CD79281E63DE452B6E3669E /* Pods-SwiftMiniZip_Tests.release.xcconfig */;
 			buildSettings = {
+				DEVELOPMENT_TEAM = L454S9SQH7;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
 					"$(inherited)",
