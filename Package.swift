@@ -5,11 +5,11 @@ import PackageDescription
 
 let package = Package(
     name: "SwiftMiniZip",
-    platforms: [.iOS(.v15),.macOS(.v10_14)],
+    platforms: [.iOS(.v15), .macOS(.v10_13)],
     products: [
         .library(
             name: "SwiftMiniZip",
-            targets: ["SwiftMiniZip"]),
+            targets: ["SwiftMiniZip"])
     ],
     targets: [
         .target(
@@ -32,5 +32,5 @@ let package = Package(
                 .copy("Resources/regular.zip"),
             ]),
     ]
-    
+
 )
