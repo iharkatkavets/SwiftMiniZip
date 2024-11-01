@@ -7,28 +7,23 @@
 //
 
 import Logging
-import XCTest
+import Testing
 
 @testable import SwiftMiniZip
 
-final class ZipTests: XCTestCase {
-    var sandboxDirURL: URL!
+final class ZipTests {
+    var sandboxDirURL = try! makeSandboxDirectory()
     let logger = Logger(label: "ZipTests")
 
-    override class func setUp() {
-        super.setUp()
-        XCTestObservationCenter.shared.addTestObserver(LoggingTestObserver())
+    init() {
+        LoggingTestObserver.initializeLogging
     }
 
-    override func setUpWithError() throws {
-        sandboxDirURL = try makeSandboxDirectory()
+    deinit {
+        try! removeSandboxDirectory(sandboxDirURL)
     }
 
-    override func tearDownWithError() throws {
-        try removeSandboxDirectory(sandboxDirURL)
-    }
-
-    func testGenZipItemFiles() throws {
+    @Test func testGenZipItemFiles() throws {
         let d1 = try createFolder(sandboxDirURL.appendingPathComponent("folder1"))
         let f1 = try createFile(d1.appendingPathComponent("file1.txt"), randString())
         let d2 = try createFolder(sandboxDirURL.appendingPathComponent("folder2"))
@@ -43,12 +38,12 @@ final class ZipTests: XCTestCase {
 
         let zipItems = Zip(config: config).generateZipItems(from: config.srcs)
 
-        XCTAssertEqual(zipItems[0].fileName, "file1.txt")
-        XCTAssertEqual(zipItems[1].fileName, "file2.txt")
-        XCTAssertEqual(zipItems[2].fileName, "file2.txt")
+        #expect(zipItems[0].fileName == "file1.txt")
+        #expect(zipItems[1].fileName == "file2.txt")
+        #expect(zipItems[2].fileName == "file2.txt")
     }
 
-    func testGenZipItemsFolders() throws {
+    @Test func testGenZipItemsFolders() throws {
         let d1 = try createFolder(sandboxDirURL.appendingPathComponent("folder1"))
         try createFile(d1.appendingPathComponent("file1.txt"), randString())
         let d2 = try createFolder(sandboxDirURL.appendingPathComponent("folder2"))
@@ -63,12 +58,12 @@ final class ZipTests: XCTestCase {
 
         let zipItems = Zip(config: config).generateZipItems(from: config.srcs)
 
-        XCTAssertEqual(zipItems[0].fileName, "folder1/file1.txt")
-        XCTAssertEqual(zipItems[1].fileName, "folder2/file2.txt")
-        XCTAssertEqual(zipItems[2].fileName, "folder2/folderInFolder2/file2.txt")
+        #expect(zipItems[0].fileName == "folder1/file1.txt")
+        #expect(zipItems[1].fileName == "folder2/file2.txt")
+        #expect(zipItems[2].fileName == "folder2/folderInFolder2/file2.txt")
     }
 
-    func testZipSingleFileWithoutPassword() throws {
+    @Test func testZipSingleFileWithoutPassword() throws {
         let folderURL = try createFolder(sandboxDirURL.appendingPathComponent(randString()))
         let filename = randString()
         let fileURL = try createFile(folderURL.appendingPathComponent(filename), randString())
@@ -77,10 +72,10 @@ final class ZipTests: XCTestCase {
         let config = Zip.Config([fileURL], zipLocation)
         try Zip(config: config).perform()
 
-        XCTAssertTrue(isItemExists(zipLocation))
+        #expect(isItemExists(zipLocation))
     }
 
-    func testZipSingleFileWithPassword() throws {
+    @Test func testZipSingleFileWithPassword() throws {
         let folderURL = try createFolder(sandboxDirURL.appendingPathComponent(randString()))
         let filename = randString()
         let fileURL = try createFile(folderURL.appendingPathComponent(filename), randString())
@@ -91,10 +86,10 @@ final class ZipTests: XCTestCase {
         logger.info("password=\(config.password!)")
         try Zip(config: config).perform()
 
-        XCTAssertTrue(isItemExists(zipLocation))
+        #expect(isItemExists(zipLocation))
     }
 
-    func testZipMultipleFilesWithoutPassword() throws {
+    @Test func testZipMultipleFilesWithoutPassword() throws {
         let d1 = try createFolder(sandboxDirURL.appendingPathComponent(randString()))
         let f1 = try createFile(d1.appendingPathComponent(randString()), randString())
         let d2 = try createFolder(sandboxDirURL.appendingPathComponent(randString()))
@@ -107,10 +102,10 @@ final class ZipTests: XCTestCase {
 
         try Zip(config: config).perform()
 
-        XCTAssertTrue(isItemExists(zipLocation))
+        #expect(isItemExists(zipLocation))
     }
 
-    func testZipMultipleFilesWithPassword() throws {
+    @Test func testZipMultipleFilesWithPassword() throws {
         let d1 = try createFolder(sandboxDirURL.appendingPathComponent(randString()))
         let f1 = try createFile(d1.appendingPathComponent(randString()), randString())
         let d2 = try createFolder(sandboxDirURL.appendingPathComponent(randString()))
@@ -125,6 +120,6 @@ final class ZipTests: XCTestCase {
 
         try Zip(config: config).perform()
 
-        XCTAssertTrue(isItemExists(zipLocation))
+        #expect(isItemExists(zipLocation))
     }
 }

@@ -6,29 +6,25 @@
 //  Copyright © 2022 CocoaPods. All rights reserved.
 //
 
+import Foundation
 import Logging
-import XCTest
+import Testing
 
 @testable import SwiftMiniZip
 
-final class UnzipTests: XCTestCase {
-    var sandboxDirURL: URL!
+final class UnzipTests {
+    let sandboxDirURL = try! makeSandboxDirectory()
     let logger = Logger(label: "UnzipTests")
 
-    override class func setUp() {
-        super.setUp()
-        XCTestObservationCenter.shared.addTestObserver(LoggingTestObserver())
+    init() {
+        LoggingTestObserver.initializeLogging
     }
 
-    override func setUpWithError() throws {
-        sandboxDirURL = try makeSandboxDirectory()
+    deinit {
+        try! removeSandboxDirectory(sandboxDirURL)
     }
 
-    override func tearDownWithError() throws {
-        try removeSandboxDirectory(sandboxDirURL)
-    }
-
-    func testUnzipOriginFileWithoutPassword() throws {
+    @Test func testUnzipOriginFileWithoutPassword() throws {
         let config = Unzip.Config(fileURL("OriginFile.txt", "zip"), sandboxDirURL)
 
         try Unzip(config: config).extract()
@@ -39,10 +35,10 @@ final class UnzipTests: XCTestCase {
         let data1 = try! Data(contentsOf: unzipedFile)
         let data2 = try! Data(contentsOf: originFile)
 
-        XCTAssertEqual(data1, data2)
+        #expect(data1 == data2)
     }
 
-    func testUnzipOriginFileWithPassword() throws {
+    @Test func testUnzipOriginFileWithPassword() throws {
         var config = Unzip.Config(fileURL("OriginFile.txt.encrypted", "zip"), sandboxDirURL)
         config.password = "OriginFile.txt.encrypted.zip"
 
@@ -54,39 +50,39 @@ final class UnzipTests: XCTestCase {
         let data1 = try! Data(contentsOf: unzipedFile)
         let data2 = try! Data(contentsOf: originFile)
 
-        XCTAssertEqual(data1, data2)
+        #expect(data1 == data2)
     }
 
-    func testUnzipProtected() throws {
+    @Test func testUnzipProtected() throws {
         var config = Unzip.Config(fileURL("complexprotected", "zip"), sandboxDirURL)
         config.password = "complexprotected.zip"
         try Unzip(config: config).extract()
 
-        XCTAssertTrue(isItemExists(sandboxDirURL.appendingPathComponent("folder1/")))
-        XCTAssertTrue(isItemExists(sandboxDirURL.appendingPathComponent("folder1/file1.txt")))
-        XCTAssertTrue(isItemExists(sandboxDirURL.appendingPathComponent("folder1/folder1_1/")))
-        XCTAssertTrue(
+        #expect(isItemExists(sandboxDirURL.appendingPathComponent("folder1/")))
+        #expect(isItemExists(sandboxDirURL.appendingPathComponent("folder1/file1.txt")))
+        #expect(isItemExists(sandboxDirURL.appendingPathComponent("folder1/folder1_1/")))
+        #expect(
             isItemExists(
                 sandboxDirURL.appendingPathComponent("folder1/folder1_1/folder1_1_1/file1_1_1.txt"))
         )
-        XCTAssertTrue(
+        #expect(
             isItemExists(sandboxDirURL.appendingPathComponent("folder1/folder1_1/file1_1.txt")))
-        XCTAssertTrue(isItemExists(sandboxDirURL.appendingPathComponent("folder2/")))
-        XCTAssertTrue(isItemExists(sandboxDirURL.appendingPathComponent("folder2/file2.txt")))
-        XCTAssertTrue(isItemExists(sandboxDirURL.appendingPathComponent("folder2/folder2_2/")))
-        XCTAssertTrue(
+        #expect(isItemExists(sandboxDirURL.appendingPathComponent("folder2/")))
+        #expect(isItemExists(sandboxDirURL.appendingPathComponent("folder2/file2.txt")))
+        #expect(isItemExists(sandboxDirURL.appendingPathComponent("folder2/folder2_2/")))
+        #expect(
             isItemExists(sandboxDirURL.appendingPathComponent("folder2/folder2_2/file2_2.txt")))
-        XCTAssertTrue(isItemExists(sandboxDirURL.appendingPathComponent("folder3/")))
-        XCTAssertTrue(isItemExists(sandboxDirURL.appendingPathComponent("folder3/file3.txt")))
+        #expect(isItemExists(sandboxDirURL.appendingPathComponent("folder3/")))
+        #expect(isItemExists(sandboxDirURL.appendingPathComponent("folder3/file3.txt")))
     }
 
     func testUnzipFailsUsingWrongPassword() throws {
         var config = Unzip.Config(fileURL("complexprotected", "zip"), sandboxDirURL)
         config.password = "wrongPassword"
 
-        XCTAssertThrowsError(try Unzip(config: config).extract())
-        XCTAssertFalse(
-            isItemExists(
+        #expect(throws: (any Error).self) { try Unzip(config: config).extract() }
+        #expect(
+            !isItemExists(
                 sandboxDirURL.appendingPathComponent("folder1/folder1_1/folder1_1_1/file1_1_1.txt"))
         )
     }
@@ -96,18 +92,18 @@ final class UnzipTests: XCTestCase {
 
         let list = try Unzip(config: config).readStructure()
 
-        XCTAssertEqual("folder1/", list[0])
-        XCTAssertEqual("folder1/file1.txt", list[1])
-        XCTAssertEqual("folder1/folder1_1/", list[2])
-        XCTAssertEqual("folder1/folder1_1/folder1_1_1/", list[3])
-        XCTAssertEqual("folder1/folder1_1/folder1_1_1/file1_1_1.txt", list[4])
-        XCTAssertEqual("folder1/folder1_1/file1_1.txt", list[5])
-        XCTAssertEqual("folder2/", list[6])
-        XCTAssertEqual("folder2/file2.txt", list[7])
-        XCTAssertEqual("folder2/folder2_2/", list[8])
-        XCTAssertEqual("folder2/folder2_2/file2_2.txt", list[9])
-        XCTAssertEqual("folder3/", list[10])
-        XCTAssertEqual("folder3/file3.txt", list[11])
+        #expect("folder1/" == list[0])
+        #expect("folder1/file1.txt" == list[1])
+        #expect("folder1/folder1_1/" == list[2])
+        #expect("folder1/folder1_1/folder1_1_1/" == list[3])
+        #expect("folder1/folder1_1/folder1_1_1/file1_1_1.txt" == list[4])
+        #expect("folder1/folder1_1/file1_1.txt" == list[5])
+        #expect("folder2/" == list[6])
+        #expect("folder2/file2.txt" == list[7])
+        #expect("folder2/folder2_2/" == list[8])
+        #expect("folder2/folder2_2/file2_2.txt" == list[9])
+        #expect("folder3/" == list[10])
+        #expect("folder3/file3.txt" == list[11])
     }
 
     func testExtractInMemoryExistingProtectedZip() throws {
@@ -120,6 +116,6 @@ final class UnzipTests: XCTestCase {
 
         let fileContent = "folder1/folder1_1/folder1_1_1/file1_1_1.txt\n"
         let expectedData = fileContent.data(using: .utf8)
-        XCTAssertEqual(expectedData, fileData)
+        #expect(expectedData == fileData)
     }
 }

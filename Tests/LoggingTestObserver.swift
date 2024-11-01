@@ -1,7 +1,7 @@
 import Logging
-import XCTest
+import Testing
 
-class LoggingTestObserver: NSObject, XCTestObservation {
+class LoggingTestObserver {
     static let initializeLogging: Void = {
         LoggingSystem.bootstrap { label in
             var handler = StreamLogHandler.standardOutput(label: label)
@@ -9,9 +9,4 @@ class LoggingTestObserver: NSObject, XCTestObservation {
             return handler
         }
     }()
-
-    override init() {
-        super.init()
-        _ = LoggingTestObserver.initializeLogging
-    }
 }
