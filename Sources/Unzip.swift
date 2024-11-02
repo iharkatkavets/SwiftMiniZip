@@ -30,7 +30,7 @@ public class Unzip {
         self.config = config
     }
 
-    public func extract() throws {
+    public func perform() throws {
         let srcURL = try validateSrcConfiguration()
         let dstURL = try validateDstConfiguration()
 
@@ -280,9 +280,9 @@ public class Unzip {
         unzCloseCurrentFile(file)
     }
 
-    public func extract(_ dstURL: URL, _ list: [String]) throws {
+    public func extract(_ list: [String]) throws {
         let srcURL = try validateSrcConfiguration()
-        _ = try validateDstConfiguration()
+        let dstURL = try validateDstConfiguration()
 
         let file = try createUnzipFile(srcURL)
         for i in 0..<list.count {

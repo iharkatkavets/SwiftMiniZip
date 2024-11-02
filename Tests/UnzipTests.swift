@@ -27,7 +27,7 @@ final class UnzipTests {
     @Test func testUnzipOriginFileWithoutPassword() throws {
         let config = Unzip.Config(fileURL("OriginFile.txt", "zip"), sandboxDirURL)
 
-        try Unzip(config: config).extract()
+        try Unzip(config: config).perform()
 
         let unzipedFile = sandboxDirURL.appendingPathComponent("OriginFile.txt")
         let originFile = fileURL("OriginFile", "txt")
@@ -42,7 +42,7 @@ final class UnzipTests {
         var config = Unzip.Config(fileURL("OriginFile.txt.encrypted", "zip"), sandboxDirURL)
         config.password = "OriginFile.txt.encrypted.zip"
 
-        try Unzip(config: config).extract()
+        try Unzip(config: config).perform()
 
         let unzipedFile = sandboxDirURL.appendingPathComponent("Tests/Resources/OriginFile.txt")
         let originFile = fileURL("OriginFile", "txt")
@@ -56,7 +56,7 @@ final class UnzipTests {
     @Test func testUnzipProtected() throws {
         var config = Unzip.Config(fileURL("complexprotected", "zip"), sandboxDirURL)
         config.password = "complexprotected.zip"
-        try Unzip(config: config).extract()
+        try Unzip(config: config).perform()
 
         #expect(isItemExists(sandboxDirURL.appendingPathComponent("folder1/")))
         #expect(isItemExists(sandboxDirURL.appendingPathComponent("folder1/file1.txt")))
@@ -80,7 +80,7 @@ final class UnzipTests {
         var config = Unzip.Config(fileURL("complexprotected", "zip"), sandboxDirURL)
         config.password = "wrongPassword"
 
-        #expect(throws: (any Error).self) { try Unzip(config: config).extract() }
+        #expect(throws: (any Error).self) { try Unzip(config: config).perform() }
         #expect(
             !isItemExists(
                 sandboxDirURL.appendingPathComponent("folder1/folder1_1/folder1_1_1/file1_1_1.txt"))
@@ -106,7 +106,7 @@ final class UnzipTests {
         #expect("folder3/file3.txt" == list[11])
     }
 
-    func testExtractInMemoryExistingProtectedZip() throws {
+    func testExtractToMemoryFileFromProtectedZip() throws {
         var config = Unzip.Config(fileURL("complexprotected", "zip"))
         config.password = "complexprotected.zip"
 
