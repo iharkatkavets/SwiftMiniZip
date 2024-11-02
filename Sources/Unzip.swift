@@ -32,13 +32,13 @@ public class Unzip {
 
     public func extract() throws {
         let srcURL = try validateSrcConfiguration()
-        _ = try validateDstConfiguration()
+        let dstURL = try validateDstConfiguration()
 
         let file = try createUnzipFile(srcURL)
         defer {
             closeUnzipFile(file)
         }
-        try extractAll(file)
+        try extractAll(dstURL, file)
     }
 
     public func readStructure() throws -> [Path] {
@@ -88,13 +88,13 @@ public class Unzip {
         return config.password?.cString(using: String.Encoding.ascii)
     }
 
-    private func extractAll(_ file: unzFile) throws {
+    private func extractAll(_ dstURL: URL, _ file: unzFile) throws {
         do {
             var status: Int32 = unzGoToFirstFile(file)
             while status == UNZ_OK && status != UNZ_END_OF_LIST_OF_FILE {
                 try openCurrentFile(file)
                 let filePath = try extractPath(file)
-                let fullPath = makeFullPath(filePath)
+                let fullPath = makeFullPath(dstURL, filePath)
                 try createIntermediateDirectories(fullPath)
                 let isDirectory = isStringEndsToSlash(filePath)
 
@@ -174,17 +174,21 @@ public class Unzip {
 
         let fileNameBufferSize = Int(ufi.size_filename) + 1
         let fileNameBuffer = UnsafeMutablePointer<CChar>.allocate(capacity: fileNameBufferSize)
+        defer {
+            fileNameBuffer.deallocate()
+        }
+
         unzGetCurrentFileInfo64(
             file, &ufi, fileNameBuffer, UInt(fileNameBufferSize), nil, 0, nil, 0)
         fileNameBuffer[Int(ufi.size_filename)] = 0
         let filePath = String(cString: fileNameBuffer)
-        fileNameBuffer.deallocate()
 
         guard filePath.count > 0 else {
             unzCloseCurrentFile(file)
             throw MiniUnzipError()
         }
 
+        logger.debug("extracted path=\(filePath)")
         return filePath
     }
 
@@ -201,9 +205,10 @@ public class Unzip {
         unzClose(uz)
     }
 
-    private func makeFullPath(_ relativePath: String) -> String {
+    private func makeFullPath(_ baseURL: URL, _ relativePath: String) -> String {
         let correctedPath = replaceBackslashesToForward(relativePath)
-        let fullPath = config.dstURL!.appendingPathComponent(correctedPath).path
+        let fullPath = baseURL.appendingPathComponent(correctedPath).path
+        logger.debug("full path=\(fullPath)")
         return fullPath
     }
 
@@ -280,7 +285,7 @@ public class Unzip {
         unzCloseCurrentFile(file)
     }
 
-    public func extract(_ list: [String]) throws {
+    public func extract(_ dstURL: URL, _ list: [String]) throws {
         let srcURL = try validateSrcConfiguration()
         _ = try validateDstConfiguration()
 
@@ -293,7 +298,7 @@ public class Unzip {
                 }
                 try openCurrentFile(file)
                 let filePath = try extractPath(file)
-                let fullPath = makeFullPath(filePath)
+                let fullPath = makeFullPath(dstURL, filePath)
                 try createIntermediateDirectories(fullPath)
                 let isDirectory = isStringEndsToSlash(filePath)
 
