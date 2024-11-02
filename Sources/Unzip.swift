@@ -208,6 +208,7 @@ public class Unzip {
     }
 
     private func createIntermediateDirectories(_ fullPath: String) throws {
+        logger.debug("create intermediate directories \(fullPath)")
         let isDirectory = isStringEndsToSlash(fullPath)
         let creationDate = Date()
         let directoryAttributes: [FileAttributeKey: Any]? = [
@@ -225,10 +226,10 @@ public class Unzip {
                 try fm.createDirectory(
                     atPath: parentDirectory, withIntermediateDirectories: true,
                     attributes: directoryAttributes)
-                logger.debug("create directory \(parentDirectory)")
+                logger.debug("create parent directory \(parentDirectory)")
             }
         } catch {
-            logger.error("failed to create directory \(fullPath)")
+            logger.error("failed to create intermediate directories \(fullPath)")
             throw MiniUnzipError()
         }
     }
