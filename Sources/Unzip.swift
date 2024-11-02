@@ -32,7 +32,7 @@ public class Unzip {
 
     public func extract() throws {
         let srcURL = try validateSrcConfiguration()
-        let dstURL = try validateDstConfiguration()
+        _ = try validateDstConfiguration()
 
         let file = try createUnzipFile(srcURL)
         defer {
@@ -45,8 +45,10 @@ public class Unzip {
         let srcURL = try validateSrcConfiguration()
 
         let file = try createUnzipFile(srcURL)
+        defer {
+            closeUnzipFile(file)
+        }
         let list = try readStructure(file)
-        closeUnzipFile(file)
         return list
     }
 
@@ -65,8 +67,8 @@ public class Unzip {
             throw ConfigurationError()
         }
 
-        if fm.fileExists(atPath: url.absoluteString) {
-            logger.error("source file doesn't exists \(url.absoluteString)")
+        guard fm.fileExists(atPath: url.path) else {
+            logger.error("source file doesn't exists \(url.path)")
             throw FileNotExists(url: url)
         }
 
@@ -278,8 +280,8 @@ public class Unzip {
     }
 
     public func extract(_ list: [String]) throws {
-        let srcURL = try validateDstConfiguration()
-        try validateSrcConfiguration()
+        let srcURL = try validateSrcConfiguration()
+        _ = try validateDstConfiguration()
 
         let file = try createUnzipFile(srcURL)
         for i in 0..<list.count {

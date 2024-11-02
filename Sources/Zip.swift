@@ -61,7 +61,7 @@ public class Zip {
     }
 
     private func validateDstLocation() throws {
-        if fm.fileExists(atPath: config.dstURL!.absoluteString) {
+        if fm.fileExists(atPath: config.dstURL!.path) {
             throw FileExists(url: config.dstURL!)
         }
     }
