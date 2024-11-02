@@ -80,7 +80,7 @@ public class Unzip {
             logger.error("can't create unzipFile")
             throw MiniZipError()
         }
-        logger.debug("create unzipFile \(srcURL)")
+        logger.debug("create unzipFile from file \(srcURL)")
         return file
     }
 
@@ -188,7 +188,7 @@ public class Unzip {
             throw MiniUnzipError()
         }
 
-        logger.debug("extracted path=\(filePath)")
+        logger.debug("unzip file with path \(filePath)")
         return filePath
     }
 
@@ -208,33 +208,28 @@ public class Unzip {
     private func makeFullPath(_ baseURL: URL, _ relativePath: String) -> String {
         let correctedPath = replaceBackslashesToForward(relativePath)
         let fullPath = baseURL.appendingPathComponent(correctedPath).path
-        logger.debug("full path=\(fullPath)")
+        logger.debug("full dst path \(fullPath)")
         return fullPath
     }
 
     private func createIntermediateDirectories(_ fullPath: String) throws {
-        logger.debug("create intermediate directories \(fullPath)")
         let isDirectory = isStringEndsToSlash(fullPath)
         let creationDate = Date()
         let directoryAttributes: [FileAttributeKey: Any]? = [
             .creationDate: creationDate,
             .modificationDate: creationDate,
         ]
+        let intermediateDirs =
+            isDirectory ? fullPath : (fullPath as NSString).deletingLastPathComponent
         do {
-            if isDirectory {
+            if !fm.fileExists(atPath: intermediateDirs) {
                 try fm.createDirectory(
-                    atPath: fullPath, withIntermediateDirectories: true,
+                    atPath: intermediateDirs, withIntermediateDirectories: true,
                     attributes: directoryAttributes)
-                logger.debug("create directory \(fullPath)")
-            } else {
-                let parentDirectory = (fullPath as NSString).deletingLastPathComponent
-                try fm.createDirectory(
-                    atPath: parentDirectory, withIntermediateDirectories: true,
-                    attributes: directoryAttributes)
-                logger.debug("create parent directory \(parentDirectory)")
+                logger.debug("create intermediate directories \(intermediateDirs)")
             }
         } catch {
-            logger.error("failed to create intermediate directories \(fullPath)")
+            logger.error("failed to create intermediate directories \(intermediateDirs)")
             throw MiniUnzipError()
         }
     }
@@ -245,7 +240,7 @@ public class Unzip {
         var readBytes: Int32 = 0
         var buffer = [CUnsignedChar](repeating: 0, count: Int(bufferSize))
 
-        guard let filePointer: UnsafeMutablePointer<FILE>? = fopen(fullPath, "wb") else {
+        guard let filePointer: UnsafeMutablePointer<FILE> = fopen(fullPath, "wb") else {
             logger.error("failed to create file \(fullPath)")
             throw MiniUnzipError()
         }
@@ -274,7 +269,7 @@ public class Unzip {
 
         let ufi = try extractFileInfo(file)
         guard writeBytes == ufi.uncompressed_size else {
-            logger.error("wrote bytes are not equal uncompressed_size")
+            logger.error("wrote bytes are not equal to uncompressed_size")
             throw MiniUnzipError()
         }
 
