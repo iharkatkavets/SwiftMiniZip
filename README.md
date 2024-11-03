@@ -1,44 +1,68 @@
 # SwiftMiniZip
 
-The idea of that library to provide Swift wrappers around popular C [minizip](https://github.com/madler/zlib/tree/master/contrib/minizip) library
+This is a Swift library-wrapper around popular C [minizip](https://github.com/madler/zlib) library. It profides lightweight Swift API for creating `zip` archives, and extract them, list the files contained in the archive without the requirement to extract the whole arhive, extract the particular file. All of that works with encrypted(password protected) archives. Works both on Linux and macOS environments.
 
-## Example
+# Getting started
 
-Zip operation
+If you’re integrating the library into an Xcode project, just search for the string in the Xcode Package Manager:
+```bash
+https://github.com/iharkatkavets/SwiftMiniZip
+```
+If you use `Package.swift` as the source of truth in your project, then declare the dependency
 ```swift
-var config = Zip.Config()
-config.srcs = [
-  folder1URL, file2URL, folder3URL, file4URL
-]
-config.dstURL = zipFileURL
-config.password = passwordStringIfNeeded
-let zip = Zip(config: config)
-try zip.perform()
+.package(url: "https://github.com/iharkatkavets/SwiftMiniZip.git", from: "1.0.5"),
+```
+and add `SwiftMiniZip` as a dependency to your application/library target
+```swift
+.executableTarget(
+  name: "MyApp",
+  dependencies: [
+    .product(name: "SwiftMiniZip", package: "SwiftMiniZip"),
+  ]
+)
 ```
 
-Unzip operation
+# Example of Zip/Unzip Operations
 ```swift
-var config = Unzip.Config()
-config.srcURL = zipFileURL
-config.dstURL = destinationDirURL
-config.password = passwordStringIfNeeded
-let unzip = Unzip(config: config)        
-try unzip.extract()
+import SwiftMiniZip
+
+let fm = FileManager.default
+let outZipFileURL = fm.temporaryDirectory.appendingPathComponent("example.zip")
+let outUnzipContentURL = fm.temporaryDirectory.appendingPathComponent("unzip_example.jpg")
+            
+let bundle = Bundle.main
+let password = "HappyCoding!"
+let originImageURL = bundle.url(forResource: "example", withExtension: "jpg")!
+var zipConfig = Zip.Config([originImageURL], outZipFileURL)
+zipConfig.password = password
+try Zip(config: zipConfig).perform()
+            
+var config = Unzip.Config(outZipFileURL, outUnzipContentURL)
+config.password = password
+try Unzip(config: config).perform()
 ```
+
+# Example of Listing the Files Inside the Archive
+```swift
+import SwiftMiniZip
+
+let filesInside = try Unzip(config: .init(outZipFileURL)).readStructure()
+```
+
+# Example of Extracting the concrete files from the Archive
+```swift
+import SwiftMiniZip
+
+let data = try Unzip(config: config).extractToMemory("example.jpg")
+```
+
 
 ## Requirements
-
-iOS 15.0, 
-macOS 10.14
-
-## Installation
-
-In the Xcode press `File` -> `Add Packages` -> In the search field insert `https://github.com/iharkatkavets/SwiftMiniZip`. It might require to setup GitHub Account in the Xcode
+Swift 5.10
+Linux/macOS
 
 ## Author
-
 Ihar Katkavets, job4ihar@gmail.com
 
 ## License
-
 SwiftMiniZip is available under the MIT license. See the LICENSE file for more info.
