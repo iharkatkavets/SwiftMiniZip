@@ -1,5 +1,5 @@
 {
-  "originHash" : "1453599a41ee21039fc598ab4f88c6aec6b78af60b95134aea6f8d11607454e8",
+  "originHash" : "41b0f37628395e1bd6835aeeb7ad4d79cffb78e1756dd5ee3127103b2b43ee15",
   "pins" : [
     {
       "identity" : "swift-log",
@@ -8,6 +8,15 @@
       "state" : {
         "revision" : "9cb486020ebf03bfa5b5df985387a14a98744537",
         "version" : "1.6.1"
+      }
+    },
+    {
+      "identity" : "swiftminizip",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/iharkatkavets/SwiftMiniZip",
+      "state" : {
+        "revision" : "05a76136bc767b0e16b986a90493bbad14e95be8",
+        "version" : "1.0.5"
       }
     }
   ],

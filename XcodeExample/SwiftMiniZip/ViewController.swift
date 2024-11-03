@@ -32,7 +32,7 @@ class ViewController: UIViewController {
             
             var config = Unzip.Config(outZipFileURL, outUnzipContentURL)
             config.password = password
-            try Unzip(config: config).extract()
+            try Unzip(config: config).perform()
             print("successfully unzipped to \(outZipFileURL)")
         }
         catch {
