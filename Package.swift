@@ -6,9 +6,8 @@ import PackageDescription
 let package = Package(
     name: "SwiftMiniZip",
     products: [
-        .library(
-            name: "SwiftMiniZip",
-            targets: ["SwiftMiniZip"])
+        .library( name: "SwiftMiniZip", type: .static, targets: ["SwiftMiniZip"]),
+        .library( name: "cminizip", type: .static, targets: ["cminizip"])
     ],
     dependencies: [
         .package(url: "https://github.com/apple/swift-log.git", from: "1.0.0")
@@ -20,10 +19,18 @@ let package = Package(
                 "cminizip",
                 .product(name: "Logging", package: "swift-log"),
             ],
-            path: "Sources"),
+            path: "Sources"
+            ),
         .target(
             name: "cminizip",
-            path: "cminizip"),
+            path: "cminizip",
+            cSettings: [
+                .headerSearchPath("cminizip/include")
+            ],
+            linkerSettings: [
+                .linkedLibrary("z")
+            ]
+            ),
         .testTarget(
             name: "SwiftMiniZipTests",
             dependencies: ["SwiftMiniZip"],
@@ -34,10 +41,10 @@ let package = Package(
                 .copy("Resources/OriginFile.txt"),
                 .copy("Resources/OriginFile.txt.zip"),
                 .copy("Resources/OriginFile.txt.encrypted.zip"),
-                .copy("Resources/FirstFolder"),
                 .copy("Resources/protected.zip"),
                 .copy("Resources/regular.zip"),
-            ]),
+            ]
+            ),
     ]
 
 )
