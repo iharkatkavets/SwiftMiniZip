@@ -1,6 +1,7 @@
 # SwiftMiniZip
 
-This is a Swift library-wrapper around popular C [minizip](https://github.com/madler/zlib) library. It profides lightweight Swift API for creating `zip` archives, and extract them, list the files contained in the archive without the requirement to extract the whole arhive, extract the particular file. All of that works with encrypted(password protected) archives. Works both on Linux and macOS environments.
+This is a Swift library wrapper around the popular C [minizip](https://github.com/madler/zlib) library. It provides a lightweight Swift API for creating `zip` archives, extracting them, listing the files contained in an archive without the need to extract the entire archive, and extracting specific files. It also supports encrypted (password-protected) archives and works in both Linux and macOS environments.
+
 
 # Getting started
 
